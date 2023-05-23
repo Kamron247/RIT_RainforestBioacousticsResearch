@@ -27,3 +27,10 @@ STEPS:
 - The remaining patterns were then regrouped into different structures using tree classification.
 - Patterns that do not have at least one other similar pattern are ignored (considered as noise)
 - Some sources are merged if they are sychronized in time
+
+Tree Classification of Listed Sources
+- Patterns regrouped into different clusters using classification tree, finding relations between the similarities
+ of the different patterns
+- To make a classification tree, the similarities between the different patterns was calculated
+- Formula assesses if the two patterns meet a certain criteria (???not sure how it works...) and takes the minimum of the acos of
+  correlation dividide by the euclidean norm of each pattern mutiplied by eachother
