@@ -31,9 +31,10 @@ def ACI(spectrogram, delta_f=16, delta_t=16):
     # It would be infeasible to check every since frequency, so I will bin the bins
     # for the complexity index.
     ACI_total = 0
+    ACI_over_time = []
     for j in range(0, int(len(spectrogram[0])/ delta_t) - 1):
         t = j * delta_t
-        ACI_f = 0
+        ACI_t = 0
         for q in range(0, int(len(spectrogram) / delta_f) - 1):
             # for each frequency bin
             start = q * delta_f
@@ -43,14 +44,18 @@ def ACI(spectrogram, delta_f=16, delta_t=16):
             D = sum([abs(spectrogram[k][t] - spectrogram[k+1][t]) for k in range(start, end-1)])
             I = sum([spectrogram[k][t] for k in range(start, end)])
             
-            ACI_t = D / I
-            ACI_f += ACI_t
-        ACI_total += ACI_f
-    return ACI_total      
+            
+            ACI_t += D/I
+        ACI_over_time.append(ACI_t)
+        ACI_total += ACI_t
+    return ACI_total, ACI_over_time
         
 
     
 if __name__ == "__main__":
     spectro = get_spectrogram("../data/m10_50202_50202/20230520_050302.WAV", 48000)
-    print(ACI(spectro))
+    t, aci = ACI(spectro)
+    
+    plt.plot(range(0, len(aci)), aci)
+    plt.show()
     print(spectro.shape)
