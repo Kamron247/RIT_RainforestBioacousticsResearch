@@ -14,10 +14,16 @@ Vandame Notes
   it is likely from one source.
 - Correlation coefficient used to determine randomness. The following method can be used from NumPy corrcoef(). Vadame
   took the acos() of the correlation coefficient
-- Tree classification: f
+- Tree classification: The patterns need to be regrouped into different clusters and those patterns should then be identified in
+  a classification tree. The similarity between the patterns must be quantified.
+- Patterns that do not have at least one other similar pattern are ignored
+- Some sources are merged because they have similar shape and time sychronization
 
 
 STEPS:
 - Identify patterns based on spectogram image that was binarized
+- The differences between sounds were quantified (techniques explained in 7.5)
 - Random patterns were removed using correlation coefficient
 - The remaining patterns were then regrouped into different structures using tree classification.
+- Patterns that do not have at least one other similar pattern are ignored (considered as noise)
+- Some sources are merged if they are sychronized in time
