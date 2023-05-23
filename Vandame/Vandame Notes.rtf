@@ -8,4 +8,9 @@ Vandame Notes
 - The spectrograms are analyzed like images and the pixels are considered to find patterns
 - To speed things up, the image is binarized with 1 indicating that the pixel is above a certain threshold
   Only high power sounds are included.
-- 
+- A morphologic operation is used to remove "too little shape." Low pass filtering causes smoothing effect which is bad :(
+- Eliminating random patterns: finding what patterns were made by one source, single source patterns have a correlation with
+  same frequencies on all binary spectograms. In other words, if the pattern occurs several times in several different places,
+  it is likely from one source.
+- Correlation coefficient used to determine randomness. The following method can be used from NumPy corrcoef(). Vadame
+  took the acos() of the correlation coefficient
